@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación Revelación de Sexo</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap');
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:url('111.jpg') center/cover no-repeat;
+  background-attachment:scroll;
+  background-color:#f5efe4;
+  min-height:100vh;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+html{
+  min-height:100%;
+  height:auto;
+  overflow-x:hidden;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+body{
+  height:auto;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y;
+}
+.screen{
+  position:relative;
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 16px;
+  overflow:visible;
+}
+.center-box{
+  width:min(420px,92vw);
+  background:rgba(255,255,255,0.88);
+  backdrop-filter:blur(4px);
+  padding:32px;
+  border-radius:24px;
+  text-align:center;
+  margin:24px auto;
+  overflow:visible;
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+.hidden{display:none !important}
+h1{color:#7a5b35;margin:0 0 12px;font-family:'Playfair Display',serif;font-size:32px;line-height:1.2;text-shadow:0 1px 2px rgba(255,255,255,0.4)}
+p{
+  color:#4e3d28;
+  line-height:1.7;
+  margin:10px auto;
+  font-size:17px;
+  font-weight:500;
+  text-align:center;
+}
+.date,.address,.counter,.parents,h1{
+  text-align:center;
+  width:100%;
+}
+@media (max-width:480px){
+  .screen{
+    min-height:auto;
+    padding:32px 12px;
+  }
+  .center-box{
+    padding:26px 20px;
+    margin:20px auto 36px;
+  }
+  h1{
+    font-size:28px;
+  }
+  p{
+    font-size:16px;
+  }
+}
+  h1{
+    font-size:28px;
+  }
+  p{
+    font-size:16px;
+  }
+}
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:25px;
+  margin-top:10px;
+  font-size:16px;
+  cursor:pointer;
+  transition:.25s;
+}
+button:hover{transform:scale(1.03)}
+.enter{
+  position:relative;
+  overflow:hidden;
+}
+.enter::before,
+.enter::after{
+  content:'✨';
+  position:absolute;
+  font-size:18px;
+  opacity:.8;
+  animation:sparkle 1.8s ease-in-out infinite;
+}
+.enter::before{left:18px;top:10px}
+.enter::after{right:18px;bottom:10px;animation-delay:.9s}
+@keyframes sparkle{
+  0%,100%{transform:scale(.7);opacity:.25}
+  50%{transform:scale(1.25);opacity:1}
+}
+.enter{background:#7a5b35;color:white;font-weight:bold}
+.boy{background:#d9c3a2;color:#4a3823}
+.girl{background:#bfa27a;color:white}
+.map{background:#7a5b35;color:white}
+.rsvp{background:#cbb18d;color:#3a2a16}
+.parents{font-size:22px;font-weight:700;color:#7a5b35;font-family:'Playfair Display',serif}
+.date,.address,.counter{margin-top:12px;color:#6a5234}
+.item{position:absolute;animation:float 8s linear infinite;font-size:22px}
+@keyframes float{from{transform:translateY(100vh)}to{transform:translateY(-10vh)}}
+</style>
+</head>
+<body>
+
+<div id="welcome" class="screen">
+  <div class="center-box">
+    <h1>✨ Una noticia muy especial ✨</h1>
+    <p>
+      Con muchísimo amor queremos invitarte a compartir con nosotros
+      uno de los momentos más mágicos de nuestras vidas 💕👶
+    </p>
+    <p>
+      Ven a descubrir si nuestro bebé será niño 💙 o niña 💖
+      en una tarde llena de emoción, alegría y sorpresas.
+    </p>
+    <button class="enter" onclick="enterInvitation()">Entrar ✨</button>
+  </div>
+</div>
+
+<div id="invite" class="screen hidden">
+  <div class="center-box">
+    <h1>✨ Revelación de Sexo ✨</h1>
+    <p>Con mucha ilusión queremos invitarte a compartir uno de los momentos más especiales de nuestras vidas.</p>
+    <div class="parents">Jesús Anuel & Luciana Ocando</div>
+    <p>Acompáñanos a descubrir si nuestro bebé será 💙 niño o 💖 niña</p>
+    <div class="date">📅 4 de Abril<br>⏰ 5:00 PM</div>
+    <div class="address">📍 3726 Manson Pike<br>Oficina de Eventos</div>
+    <div class="counter" id="countdown"></div>
+    <button class="boy" onclick="team('boy')">💙 Team Niño</button>
+    <button class="girl" onclick="team('girl')">💖 Team Niña</button>
+    <button class="map" onclick="map()">📍 Cómo llegar</button>
+    <button class="rsvp" onclick="rsvp()">📲 Confirmar asistencia</button>
+    <p>✨ ¡Te esperamos! ✨</p>
+  </div>
+</div>
+
+<script>
+function enterInvitation(){
+  document.getElementById('welcome').classList.add('hidden');
+  document.getElementById('invite').classList.remove('hidden');
+}
+function map(){
+  window.open('https://www.google.com/maps/search/?api=1&query=3726+Manson+Pike');
+}
+function rsvp(){
+  const msg=encodeURIComponent('Hola, confirmo mi asistencia a la revelación de sexo 🎉');
+  window.open('https://wa.me/?text='+msg);
+}
+function team(type){
+  const emoji = type==='boy' ? '💙' : '❤️';
+  const burstCount = 40;
+
+  for(let i=0;i<burstCount;i++){
+    const conf=document.createElement('div');
+    conf.className='burst';
+    conf.textContent=emoji;
+    conf.style.position='fixed';
+    conf.style.left=(Math.random()*100)+'vw';
+    conf.style.top=(20+Math.random()*60)+'vh';
+    conf.style.fontSize=(18+Math.random()*22)+'px';
+    conf.style.pointerEvents='none';
+    conf.style.zIndex='9999';
+    conf.style.animation='burstUp '+(2.8+Math.random()*1.2)+'s ease-out forwards';
+    document.body.appendChild(conf);
+    setTimeout(()=>conf.remove(),4200);
+  }
+}
+
+const burstStyle=document.createElement('style');
+burstStyle.innerHTML=`
+@keyframes burstUp{
+  0%{transform:translateY(0) scale(.6);opacity:0}
+  10%{opacity:1}
+  100%{transform:translateY(-220px) rotate(18deg) scale(1.15);opacity:0}
+}`;
+document.head.appendChild(burstStyle);
+const eventDate=new Date('April 4, 2026 17:00:00').getTime();
+setInterval(()=>{
+  const now=new Date().getTime();
+  const dist=eventDate-now;
+  const days=Math.floor(dist/(1000*60*60*24));
+  const hours=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
+  const minutes=Math.floor((dist%(1000*60*60))/(1000*60));
+  const el=document.getElementById('countdown');
+  if(el) el.innerHTML='⏳ Faltan '+days+' días '+hours+' horas '+minutes+' minutos';
+},1000);
+</script>
+</body>
+</html>
